@@ -1,0 +1,39 @@
+        -:    0:Source:D:/Facultate/An1/Sem2/oop/lab/lab2_4_iter1/main.c
+        -:    0:Graph:D:\Facultate\An1\Sem2\oop\lab\lab2_4_iter1\cmake-build-debug-coverage\CMakeFiles\lab2_4_iter1.dir\main.c.gcno
+        -:    0:Data:D:\Facultate\An1\Sem2\oop\lab\lab2_4_iter1\cmake-build-debug-coverage\CMakeFiles\lab2_4_iter1.dir\main.c.gcda
+        -:    0:Runs:1
+        -:    1:#include "console.h"
+        -:    2:
+function runApp called 1 returned 100% blocks executed 100%
+        1:    3:void runApp()
+        -:    4:{
+        1:    5:    Console console = createConsole(1);
+        1:    5-block  0
+call    0 returned 1
+        1:    6:    runConsole(&console);
+call    0 returned 1
+        1:    7:}
+        -:    8:
+function runTests called 1 returned 100% blocks executed 100%
+        1:    9:void runTests()
+        -:   10:{
+        1:   11:    testsMedicine();
+        1:   11-block  0
+call    0 returned 1
+        1:   12:    testsMyList();
+call    0 returned 1
+        1:   13:    testSort();
+call    0 returned 1
+        1:   14:    testsServiceMedicine();
+call    0 returned 1
+        1:   15:}
+        -:   16:
+function main called 1 returned 100% blocks executed 100%
+        1:   17:int main() {
+        1:   18:    runTests();
+        1:   18-block  0
+call    0 returned 1
+        1:   19:    runApp();
+call    0 returned 1
+        1:   20:    return 0;
+        -:   21:}

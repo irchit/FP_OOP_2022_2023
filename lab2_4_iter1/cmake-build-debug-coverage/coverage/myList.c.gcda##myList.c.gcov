@@ -1,0 +1,310 @@
+        -:    0:Source:D:/Facultate/An1/Sem2/oop/lab/lab2_4_iter1/myList.c
+        -:    0:Graph:D:\Facultate\An1\Sem2\oop\lab\lab2_4_iter1\cmake-build-debug-coverage\CMakeFiles\lab2_4_iter1.dir\myList.c.gcno
+        -:    0:Data:D:\Facultate\An1\Sem2\oop\lab\lab2_4_iter1\cmake-build-debug-coverage\CMakeFiles\lab2_4_iter1.dir\myList.c.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by irchit on 3/28/2023.
+        -:    3://
+        -:    4:#include "myList.h"
+        -:    5:
+function createMyList called 19 returned 100% blocks executed 100%
+       19:    6:MyList createMyList(){
+        -:    7:    MyList newList;
+       19:    8:    newList.lenght = 0;
+       19:    9:    return newList;
+       19:    9-block  0
+        -:   10:}
+        -:   11:
+function deleteMyList called 3 returned 100% blocks executed 100%
+        3:   12:void deleteMyList(MyList* thisList)
+        -:   13:{
+        3:   14:    thisList->lenght = 0;
+        3:   15:}
+        -:   16:
+function addToMyList called 45 returned 100% blocks executed 100%
+       45:   17:int addToMyList(MyList* thisList, ElementType* newMedicine)
+        -:   18:{
+       45:   19:    if (thisList->lenght >= MAX_VALUES_LENGHT)
+       45:   19-block  0
+branch  0 taken 1 (fallthrough)
+branch  1 taken 44
+        1:   20:        return 5;
+        1:   20-block  0
+       44:   21:    thisList->values[thisList->lenght] = *newMedicine;
+       44:   22:    thisList->lenght ++;
+       44:   23:    return 0;
+       44:   23-block  0
+        -:   24:}
+        -:   25:
+function updateInMyList called 34 returned 100% blocks executed 100%
+       34:   26:int updateInMyList(MyList *thisList, ElementType *modifiedMedicine, int position)
+        -:   27:{
+       34:   28:    if (thisList->lenght <= position)
+       34:   28-block  0
+branch  0 taken 1 (fallthrough)
+branch  1 taken 33
+        1:   29:        return 6;
+        1:   29-block  0
+       33:   30:    thisList->values[position] = *modifiedMedicine;
+       33:   31:    return 0;
+       33:   31-block  0
+        -:   32:}
+        -:   33:
+function deleteFromMyList called 10 returned 100% blocks executed 100%
+       10:   34:int deleteFromMyList(MyList* thisList, int uniqueCode)
+        -:   35:{
+       10:   36:    int elementTypeFound = -1;
+       23:   37:    for (int i = 0; i < thisList->lenght; i ++)
+       10:   37-block  0
+       13:   37-block  1
+       23:   37-block  2
+branch  0 taken 19
+branch  1 taken 4 (fallthrough)
+       19:   38:        if (thisList->values[i].uniqueCode == uniqueCode)
+       19:   38-block  0
+branch  0 taken 6 (fallthrough)
+branch  1 taken 13
+        -:   39:        {
+        6:   40:            elementTypeFound = i;
+        6:   41:            break;
+        6:   41-block  0
+        -:   42:        }
+       10:   43:    if (elementTypeFound == -1)
+       10:   43-block  0
+branch  0 taken 4 (fallthrough)
+branch  1 taken 6
+        4:   44:        return 6;
+        4:   44-block  0
+       12:   45:    for (int i = elementTypeFound; i < thisList->lenght - 1; i ++)
+        6:   45-block  0
+       12:   45-block  1
+branch  0 taken 6
+branch  1 taken 6 (fallthrough)
+        6:   46:        thisList->values[i] = thisList->values[i+1];
+        6:   46-block  0
+        6:   47:    thisList->lenght --;
+        6:   48:    return 0;
+        6:   48-block  0
+        -:   49:}
+        -:   50:
+function getElementFromMyList called 60 returned 100% blocks executed 100%
+       60:   51:ElementType getElementFromMyList(MyList* thisList, int position)
+        -:   52:{
+       60:   53:    if (position >= thisList->lenght)
+       60:   53-block  0
+branch  0 taken 3 (fallthrough)
+branch  1 taken 57
+        3:   54:        return createMedicine(-1, "", 0, 0);
+        3:   54-block  0
+call    0 returned 3
+       57:   55:    return thisList->values[position];
+       57:   55-block  0
+        -:   56:}
+        -:   57:
+function copyOfMyList called 15 returned 100% blocks executed 100%
+       15:   58:MyList copyOfMyList(MyList* thisList)
+        -:   59:{
+       15:   60:    MyList newList = createMyList();
+       15:   60-block  0
+call    0 returned 15
+       47:   61:    for (int i = 0; i < thisList->lenght; i ++) {
+       47:   61-block  0
+branch  0 taken 32
+branch  1 taken 15 (fallthrough)
+       32:   62:        ElementType currentElement = copyMedicine(&thisList->values[i]);
+       32:   62-block  0
+call    0 returned 32
+       32:   63:        addToMyList(&newList, &currentElement);
+call    0 returned 32
+        -:   64:    }
+       15:   65:    return newList;
+       15:   65-block  0
+        -:   66:}
+        -:   67:
+function getLenghtOfMyList called 13 returned 100% blocks executed 100%
+       13:   68:int getLenghtOfMyList(MyList* thisList)
+        -:   69:{
+       13:   70:    return thisList->lenght;
+       13:   70-block  0
+        -:   71:}
+        -:   72:
+function testsMyList called 1 returned 100% blocks executed 62%
+        1:   73:void testsMyList(){
+        -:   74:
+        -:   75:    //Create MyList
+        1:   76:    MyList myList = createMyList();
+        1:   76-block  0
+call    0 returned 1
+       1*:   77:    assert(myList.lenght == 0);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:   77-block  0
+call    2 never executed
+        1:   77-block  1
+        -:   78:
+        -:   79:    //Add Element
+        1:   80:    myList.lenght = MAX_VALUES_LENGHT;
+        1:   81:    Medicine medicine = createMedicine(1, "Insulin", 300, 10000);
+        1:   81-block  0
+call    0 returned 1
+        1:   82:    Medicine medicine1 = createMedicine(2, "NoSPA", 100, 100000);
+call    0 returned 1
+       1*:   83:    assert(addToMyList(&myList, &medicine) == 5);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   83-block  0
+call    3 never executed
+        1:   83-block  1
+        1:   84:    myList.lenght = 0;
+       1*:   85:    assert(addToMyList(&myList, &medicine) == 0);
+        1:   85-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   85-block  1
+call    3 never executed
+        1:   85-block  2
+       1*:   86:    assert(addToMyList(&myList, &medicine1) == 0);
+        1:   86-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   86-block  1
+call    3 never executed
+        1:   86-block  2
+        -:   87:
+        -:   88:    //Get Lenght
+       1*:   89:    assert(getLenghtOfMyList(&myList) == 2);
+        1:   89-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   89-block  1
+call    3 never executed
+        1:   89-block  2
+        -:   90:
+        -:   91:    //Update Element
+        1:   92:    Medicine medicine_does_not_exist = createMedicine(13, "Insulin", 130, 10000);
+        1:   92-block  0
+call    0 returned 1
+       1*:   93:    assert(updateInMyList(&myList, &medicine_does_not_exist, 6) == 6);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   93-block  0
+call    3 never executed
+        1:   93-block  1
+        1:   94:    Medicine medicine_same_unique_code = createMedicine(1, "Aspirin", 100, 10000);
+        1:   94-block  0
+call    0 returned 1
+       1*:   95:    assert(updateInMyList(&myList, &medicine_same_unique_code, 0) == 0);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   95-block  0
+call    3 never executed
+        1:   95-block  1
+        -:   96:
+        -:   97:    //Get Element
+       1*:   98:    assert(getElementFromMyList(&myList, 2).uniqueCode == -1);
+        1:   98-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   98-block  1
+call    3 never executed
+        1:   98-block  2
+       1*:   99:    assert(getElementFromMyList(&myList, 0).uniqueCode == 1);
+        1:   99-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   99-block  1
+call    3 never executed
+        1:   99-block  2
+        -:  100:
+        -:  101:    //Copy List
+        1:  102:    MyList copyList = copyOfMyList(&myList);
+        1:  102-block  0
+call    0 returned 1
+       1*:  103:    assert(copyList.lenght == myList.lenght);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  103-block  0
+call    2 never executed
+        1:  103-block  1
+        3:  104:    for (int i = 0; i < copyList.lenght; i ++)
+        1:  104-block  0
+        2:  104-block  1
+        3:  104-block  2
+branch  0 taken 2
+branch  1 taken 1 (fallthrough)
+        -:  105:    {
+       2*:  106:        assert(copyList.values[i].uniqueCode == myList.values[i].uniqueCode);
+        2:  106-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 2
+    %%%%%:  106-block  1
+call    2 never executed
+        2:  106-block  2
+       2*:  107:        assert(copyList.values[i].concentration == myList.values[i].concentration);
+        2:  107-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 2
+    %%%%%:  107-block  1
+call    2 never executed
+        2:  107-block  2
+       2*:  108:        assert(copyList.values[i].stock == myList.values[i].stock);
+        2:  108-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 2
+    %%%%%:  108-block  1
+call    2 never executed
+        2:  108-block  2
+       2*:  109:        assert(strcmp(copyList.values[i].name, myList.values[i].name) == 0);
+        2:  109-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 2
+    %%%%%:  109-block  1
+call    2 never executed
+        2:  109-block  2
+        -:  110:    }
+        -:  111:
+        -:  112:    //Delete Element
+       1*:  113:    assert(deleteFromMyList(&myList, 1) == 0);
+        1:  113-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  113-block  1
+call    3 never executed
+        1:  113-block  2
+       1*:  114:    assert(deleteFromMyList(&myList, 111) == 6);
+        1:  114-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  114-block  1
+call    3 never executed
+        1:  114-block  2
+       1*:  115:    assert(getLenghtOfMyList(&myList) == 1);
+        1:  115-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  115-block  1
+call    3 never executed
+        1:  115-block  2
+        -:  116:
+        -:  117:    //Delete MyList
+        1:  118:    deleteMyList(&myList);
+        1:  118-block  0
+call    0 returned 1
+       1*:  119:    assert(myList.lenght == 0);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  119-block  0
+call    2 never executed
+        1:  119-block  1
+        1:  120:}

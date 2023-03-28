@@ -1,0 +1,423 @@
+        -:    0:Source:D:/Facultate/An1/Sem2/oop/lab/lab2_4_iter1/service.c
+        -:    0:Graph:D:\Facultate\An1\Sem2\oop\lab\lab2_4_iter1\cmake-build-debug-coverage\CMakeFiles\lab2_4_iter1.dir\service.c.gcno
+        -:    0:Data:D:\Facultate\An1\Sem2\oop\lab\lab2_4_iter1\cmake-build-debug-coverage\CMakeFiles\lab2_4_iter1.dir\service.c.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by irchit on 3/28/2023.
+        -:    3://
+        -:    4:#include "service.h"
+        -:    5:
+        -:    6:int isNumber(const char *string);
+        -:    7:
+function createServiceMedicine called 2 returned 100% blocks executed 100%
+        2:    8:ServiceMedicine createServiceMedicine(){
+        -:    9:    ServiceMedicine newServiceMedicine;
+        2:   10:    newServiceMedicine.thisList = createMyList();
+        2:   10-block  0
+call    0 returned 2
+        2:   11:    return newServiceMedicine;
+        -:   12:}
+        -:   13:
+function deleteServiceMedicine called 2 returned 100% blocks executed 100%
+        2:   14:void deleteServiceMedicine(ServiceMedicine* thisServiceMedicine){
+        2:   15:    deleteMyList(&thisServiceMedicine->thisList);
+        2:   15-block  0
+call    0 returned 2
+        2:   16:}
+        -:   17:
+function addElementToServiceMedicine called 10 returned 100% blocks executed 100%
+       10:   18:int addElementToServiceMedicine(ServiceMedicine* thisServiceMedicine, int uniqueCode, char* name, float concentration, int stock){
+       10:   19:    ElementType medicine = createMedicine(uniqueCode, name, concentration, stock);
+       10:   19-block  0
+call    0 returned 10
+       10:   20:    int errorCode = validateMedicine(&medicine);
+call    0 returned 10
+       10:   21:    if (errorCode != 0)
+branch  0 taken 4 (fallthrough)
+branch  1 taken 6
+        4:   22:        return errorCode;
+        4:   22-block  0
+        6:   23:    errorCode = addToMyList(&thisServiceMedicine->thisList, &medicine);
+        6:   23-block  0
+call    0 returned 6
+        6:   24:    return errorCode;
+        -:   25:}
+        -:   26:
+function updateElementInServiceMedicine called 7 returned 100% blocks executed 100%
+        7:   27:int updateElementInServiceMedicine(ServiceMedicine* thisServiceMedicine, int uniqueCode, char* name, float concentration, int stock){
+        7:   28:    ElementType medicine = createMedicine(uniqueCode, name, concentration, stock);
+        7:   28-block  0
+call    0 returned 7
+        7:   29:    MyList copyList = copyOfMyList(&thisServiceMedicine->thisList);
+call    0 returned 7
+       10:   30:    for (int i = 0; i < copyList.lenght; i ++)
+        3:   30-block  0
+       10:   30-block  1
+branch  0 taken 8
+branch  1 taken 2 (fallthrough)
+        8:   31:        if (strcmp(copyList.values[i].name, name) == 0)
+        8:   31-block  0
+branch  0 taken 5 (fallthrough)
+branch  1 taken 3
+        -:   32:        {
+        5:   33:            int errorCode = validateMedicine(&medicine);
+        5:   33-block  0
+call    0 returned 5
+        5:   34:            if (errorCode != 0)
+branch  0 taken 3 (fallthrough)
+branch  1 taken 2
+        3:   35:                return errorCode;
+        3:   35-block  0
+        2:   36:            errorCode = updateInMyList(&thisServiceMedicine->thisList, &medicine, i);
+        2:   36-block  0
+call    0 returned 2
+        2:   37:            return errorCode;
+        -:   38:        }
+        2:   39:    return 6;
+        2:   39-block  0
+        -:   40:}
+        -:   41:
+function deleteElementFromServiceMedicine called 2 returned 100% blocks executed 100%
+        2:   42:int deleteElementFromServiceMedicine(ServiceMedicine* thisServiceMedicine, int uniqueCode){
+        2:   43:    int errorCode = deleteFromMyList(&thisServiceMedicine->thisList, uniqueCode);
+        2:   43-block  0
+call    0 returned 2
+        2:   44:    return errorCode;
+        -:   45:}
+        -:   46:
+function sortElementsInServiceMedicineByDirection called 3 returned 100% blocks executed 100%
+        3:   47:MyList sortElementsInServiceMedicineByDirection(ServiceMedicine* thisServiceMedicine, int direction){
+        3:   48:    MyList copyThisList = copyOfMyList(&thisServiceMedicine->thisList);
+        3:   48-block  0
+call    0 returned 3
+        3:   49:    sortMyList(&copyThisList, direction);
+call    0 returned 3
+        3:   50:    return copyThisList;
+        -:   51:}
+        -:   52:
+function filterByCriteriaInServiceMedicine called 3 returned 100% blocks executed 100%
+        3:   53:MyList filterByCriteriaInServiceMedicine(ServiceMedicine* thisServiceMedicine, char* criteria)
+        -:   54:{
+        3:   55:    MyList copyThisList = copyOfMyList(&thisServiceMedicine->thisList);
+        3:   55-block  0
+call    0 returned 3
+        3:   56:    int criteriaByStock = isNumber(criteria);
+call    0 returned 3
+       15:   57:    for (int i = copyThisList.lenght; i >= 0 ; i --) {
+       12:   57-block  0
+       15:   57-block  1
+branch  0 taken 12
+branch  1 taken 3 (fallthrough)
+       12:   58:        if (criteriaByStock == 1)
+       12:   58-block  0
+branch  0 taken 4 (fallthrough)
+branch  1 taken 8
+        -:   59:        {
+        4:   60:            if (copyThisList.values[i].stock > strtol(criteria, NULL, 10))
+        4:   60-block  0
+call    0 returned 4
+branch  1 taken 1 (fallthrough)
+branch  2 taken 3
+        -:   61:            {
+        1:   62:                deleteFromMyList(&copyThisList, copyThisList.values[i].uniqueCode);
+        1:   62-block  0
+call    0 returned 1
+        -:   63:            }
+        -:   64:        }
+        -:   65:        else
+        -:   66:        {
+        8:   67:            if(getElementFromMyList(&copyThisList, i).name[0] != criteria[0])
+        8:   67-block  0
+call    0 returned 8
+branch  1 taken 5 (fallthrough)
+branch  2 taken 3
+        -:   68:            {
+        5:   69:                deleteFromMyList(&copyThisList, copyThisList.values[i].uniqueCode);
+        5:   69-block  0
+call    0 returned 5
+        -:   70:            }
+        -:   71:        }
+        -:   72:    }
+        3:   73:    return copyThisList;
+        3:   73-block  0
+        -:   74:}
+        -:   75:
+function isNumber called 6 returned 100% blocks executed 100%
+        6:   76:int isNumber(const char *string)
+        -:   77:{
+        6:   78:    int i = 0;
+       17:   79:    while (string[i] != '\0') {
+        6:   79-block  0
+       17:   79-block  1
+branch  0 taken 15
+branch  1 taken 2 (fallthrough)
+       15:   80:        if (string[i] < '0' || string[i] > '9')
+       15:   80-block  0
+branch  0 taken 14 (fallthrough)
+branch  1 taken 1
+       14:   80-block  1
+branch  2 taken 3 (fallthrough)
+branch  3 taken 11
+        4:   81:            return 0;
+        4:   81-block  0
+       11:   82:        i++;
+       11:   82-block  0
+        -:   83:    }
+        2:   84:    return 1;
+        2:   84-block  0
+        -:   85:}
+        -:   86:
+function testsServiceMedicine called 1 returned 100% blocks executed 59%
+        1:   87:void testsServiceMedicine()
+        -:   88:{
+        1:   89:    ServiceMedicine thisServiceMedicine = createServiceMedicine();
+        1:   89-block  0
+call    0 returned 1
+       1*:   90:    assert(thisServiceMedicine.thisList.lenght == 0);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:   90-block  0
+call    2 never executed
+        1:   90-block  1
+        -:   91:
+       1*:   92:    assert(addElementToServiceMedicine(&thisServiceMedicine, 1, "Paracetamol", 1.0, 10) == 0);
+        1:   92-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   92-block  1
+call    3 never executed
+        1:   92-block  2
+       1*:   93:    assert(addElementToServiceMedicine(&thisServiceMedicine, -1, "Paracetamol", 1.0, 10) == 1);
+        1:   93-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   93-block  1
+call    3 never executed
+        1:   93-block  2
+       1*:   94:    assert(addElementToServiceMedicine(&thisServiceMedicine, 1, "", 1.0, 10) == 2);
+        1:   94-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   94-block  1
+call    3 never executed
+        1:   94-block  2
+       1*:   95:    assert(addElementToServiceMedicine(&thisServiceMedicine, 1, "Paracetamol", 0, 10) == 3);
+        1:   95-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   95-block  1
+call    3 never executed
+        1:   95-block  2
+       1*:   96:    assert(addElementToServiceMedicine(&thisServiceMedicine, 1, "Paracetamol", 1.0, -10) == 4);
+        1:   96-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   96-block  1
+call    3 never executed
+        1:   96-block  2
+        -:   97:
+        -:   98:    //Update
+       1*:   99:    assert(updateElementInServiceMedicine(&thisServiceMedicine, 1, "Paracetamol", 1.5, 10) == 0);
+        1:   99-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:   99-block  1
+call    3 never executed
+        1:   99-block  2
+       1*:  100:    assert(updateElementInServiceMedicine(&thisServiceMedicine, 2, "Insulin", 1.0, 10) == 6);
+        1:  100-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  100-block  1
+call    3 never executed
+        1:  100-block  2
+       1*:  101:    assert(updateElementInServiceMedicine(&thisServiceMedicine, -1, "Paracetamol", 0, 10) == 1);
+        1:  101-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  101-block  1
+call    3 never executed
+        1:  101-block  2
+       1*:  102:    assert(updateElementInServiceMedicine(&thisServiceMedicine, 1, "", 1.0, -10) == 6);
+        1:  102-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  102-block  1
+call    3 never executed
+        1:  102-block  2
+       1*:  103:    assert(updateElementInServiceMedicine(&thisServiceMedicine, 1, "Paracetamol", -1.0, 10) == 3);
+        1:  103-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  103-block  1
+call    3 never executed
+        1:  103-block  2
+       1*:  104:    assert(updateElementInServiceMedicine(&thisServiceMedicine, 1, "Paracetamol", 1.0, -10) == 4);
+        1:  104-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  104-block  1
+call    3 never executed
+        1:  104-block  2
+        -:  105:
+        1:  106:    addElementToServiceMedicine(&thisServiceMedicine, 2, "Insulin", 100, 10);
+        1:  106-block  0
+call    0 returned 1
+       1*:  107:    assert(updateElementInServiceMedicine(&thisServiceMedicine, 2, "Insulin", 1.0, 10) == 0);
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  107-block  0
+call    3 never executed
+        1:  107-block  1
+        -:  108:
+        1:  109:    addElementToServiceMedicine(&thisServiceMedicine, 3, "Insulin", 10, 110);
+        1:  109-block  0
+call    0 returned 1
+        -:  110:
+        -:  111:    //Sort
+        1:  112:    MyList sortedList = sortElementsInServiceMedicineByDirection(&thisServiceMedicine, 0);
+call    0 returned 1
+       1*:  113:    assert(sortedList.lenght == 3);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  113-block  0
+call    2 never executed
+        1:  113-block  1
+       1*:  114:    assert(sortedList.values[0].uniqueCode == 2);
+        1:  114-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  114-block  1
+call    2 never executed
+        1:  114-block  2
+       1*:  115:    assert(sortedList.values[1].uniqueCode == 3);
+        1:  115-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  115-block  1
+call    2 never executed
+        1:  115-block  2
+       1*:  116:    assert(sortedList.values[2].uniqueCode == 1);
+        1:  116-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  116-block  1
+call    2 never executed
+        1:  116-block  2
+        1:  117:    sortedList = sortElementsInServiceMedicineByDirection(&thisServiceMedicine, 1);
+        1:  117-block  0
+call    0 returned 1
+       1*:  118:    assert(sortedList.lenght == 3);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  118-block  0
+call    2 never executed
+        1:  118-block  1
+       1*:  119:    assert(sortedList.values[0].uniqueCode == 1);
+        1:  119-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  119-block  1
+call    2 never executed
+        1:  119-block  2
+       1*:  120:    assert(sortedList.values[1].uniqueCode == 3);
+        1:  120-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  120-block  1
+call    2 never executed
+        1:  120-block  2
+       1*:  121:    assert(sortedList.values[2].uniqueCode == 2);
+        1:  121-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  121-block  1
+call    2 never executed
+        1:  121-block  2
+        -:  122:
+        -:  123:    //Filter
+        1:  124:    MyList filteredList = filterByCriteriaInServiceMedicine(&thisServiceMedicine, "50");
+        1:  124-block  0
+call    0 returned 1
+       1*:  125:    assert(filteredList.lenght == 2);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  125-block  0
+call    2 never executed
+        1:  125-block  1
+        1:  126:    filteredList = filterByCriteriaInServiceMedicine(&thisServiceMedicine, "I");
+        1:  126-block  0
+call    0 returned 1
+       1*:  127:    assert(filteredList.lenght == 2);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  127-block  0
+call    2 never executed
+        1:  127-block  1
+        -:  128:
+       1*:  129:    assert(isNumber("123\n") == 0);
+        1:  129-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  129-block  1
+call    3 never executed
+        1:  129-block  2
+       1*:  130:    assert(isNumber("123m") == 0);
+        1:  130-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  130-block  1
+call    3 never executed
+        1:  130-block  2
+       1*:  131:    assert(isNumber("123") == 1);
+        1:  131-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  131-block  1
+call    3 never executed
+        1:  131-block  2
+        -:  132:
+        -:  133:    //Delete Element
+       1*:  134:    assert(deleteElementFromServiceMedicine(&thisServiceMedicine, 1) == 0);
+        1:  134-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  134-block  1
+call    3 never executed
+        1:  134-block  2
+       1*:  135:    assert(deleteElementFromServiceMedicine(&thisServiceMedicine, 11) == 6);
+        1:  135-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    %%%%%:  135-block  1
+call    3 never executed
+        1:  135-block  2
+        -:  136:
+        -:  137:    //Delete Service
+        1:  138:    deleteServiceMedicine(&thisServiceMedicine);
+        1:  138-block  0
+call    0 returned 1
+       1*:  139:    assert(thisServiceMedicine.thisList.lenght == 0);
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    %%%%%:  139-block  0
+call    2 never executed
+        1:  139-block  1
+        1:  140:}

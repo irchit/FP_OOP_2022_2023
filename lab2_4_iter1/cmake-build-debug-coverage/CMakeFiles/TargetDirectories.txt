@@ -1,0 +1,3 @@
+D:/Facultate/An1/Sem2/oop/lab/lab2_4_iter1/cmake-build-debug-coverage/CMakeFiles/lab2_4_iter1.dir
+D:/Facultate/An1/Sem2/oop/lab/lab2_4_iter1/cmake-build-debug-coverage/CMakeFiles/edit_cache.dir
+D:/Facultate/An1/Sem2/oop/lab/lab2_4_iter1/cmake-build-debug-coverage/CMakeFiles/rebuild_cache.dir

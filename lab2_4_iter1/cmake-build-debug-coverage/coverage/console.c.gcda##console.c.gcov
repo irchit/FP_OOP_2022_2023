@@ -1,0 +1,370 @@
+        -:    0:Source:D:/Facultate/An1/Sem2/oop/lab/lab2_4_iter1/console.c
+        -:    0:Graph:D:\Facultate\An1\Sem2\oop\lab\lab2_4_iter1\cmake-build-debug-coverage\CMakeFiles\lab2_4_iter1.dir\console.c.gcno
+        -:    0:Data:D:\Facultate\An1\Sem2\oop\lab\lab2_4_iter1\cmake-build-debug-coverage\CMakeFiles\lab2_4_iter1.dir\console.c.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by irchit on 3/28/2023.
+        -:    3://
+        -:    4:#include "console.h"
+        -:    5:
+        -:    6:void printMenu(Console* thisConsole);
+        -:    7:
+        -:    8:void getCommand(Console *console);
+        -:    9:
+        -:   10:void closeConsole(Console *console);
+        -:   11:
+        -:   12:void addMedicineConsole(Console *console);
+        -:   13:
+        -:   14:void updateMedicineConsole(Console *console);
+        -:   15:
+        -:   16:void deleteStockOfMedicineConsole(Console *console);
+        -:   17:
+        -:   18:void sortMedicineConsole(Console *console);
+        -:   19:
+        -:   20:void filterMedicineConsole(Console *console);
+        -:   21:
+function createConsole called 1 returned 100% blocks executed 100%
+        1:   22:Console createConsole(int idConsole)
+        -:   23:{
+        -:   24:    Console newConsole;
+        1:   25:    newConsole.idConsole = idConsole;
+        1:   26:    newConsole.currentCommand = -1;
+        1:   27:    strcpy(newConsole.commands[0], "Adauga medicament");
+        1:   28:    strcpy(newConsole.commands[1], "Modifica medicament");
+        1:   29:    strcpy(newConsole.commands[2], "Sterge stoc medicament");
+        1:   30:    strcpy(newConsole.commands[3], "Sortare cresc/descresc");
+        1:   31:    strcpy(newConsole.commands[4], "Filtrare dupa criteriu");
+        1:   32:    strcpy(newConsole.commands[5], "Inchideti");
+        1:   33:    newConsole.serviceMedicine = createServiceMedicine();
+        1:   33-block  0
+call    0 returned 1
+        1:   34:    return newConsole;
+        -:   35:}
+        -:   36:
+function runConsole called 1 returned 100% blocks executed 67%
+        6:   37:void runConsole(Console* thisConsole)
+        -:   38:{
+        -:   39:    while (1) {
+        6:   40:        if (thisConsole->idConsole == -1)
+        6:   40-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 6
+    #####:   41:            return;
+    %%%%%:   41-block  0
+        6:   42:        printMenu(thisConsole);
+        6:   42-block  0
+call    0 returned 6
+        6:   43:        getCommand(thisConsole);
+call    0 returned 6
+        6:   44:        switch (thisConsole->currentCommand) {
+branch  0 taken 3
+branch  1 taken 0
+branch  2 taken 0
+branch  3 taken 1
+branch  4 taken 1
+branch  5 taken 1
+branch  6 taken 0
+        3:   45:            case 1:
+        3:   46:                addMedicineConsole(thisConsole);
+        3:   46-block  0
+call    0 returned 3
+        3:   47:                break;
+    #####:   48:            case 2:
+    #####:   49:                updateMedicineConsole(thisConsole);
+    %%%%%:   49-block  0
+call    0 never executed
+    #####:   50:                break;
+    #####:   51:            case 3:
+    #####:   52:                deleteStockOfMedicineConsole(thisConsole);
+    %%%%%:   52-block  0
+call    0 never executed
+    #####:   53:                break;
+        1:   54:            case 4:
+        1:   55:                sortMedicineConsole(thisConsole);
+        1:   55-block  0
+call    0 returned 1
+        1:   56:                break;
+        1:   57:            case 5:
+        1:   58:                filterMedicineConsole(thisConsole);
+        1:   58-block  0
+call    0 returned 1
+        1:   59:                break;
+        1:   60:            case 6:
+        1:   61:                closeConsole(thisConsole);
+        1:   61-block  0
+call    0 returned 1
+        1:   62:                return;
+    #####:   63:            default:
+    #####:   64:                printf("Comanda Invalida\n");
+    %%%%%:   64-block  0
+call    0 never executed
+    #####:   65:                break;
+        -:   66:        }
+        -:   67:    }
+        -:   68:}
+        -:   69:
+function filterMedicineConsole called 1 returned 100% blocks executed 100%
+        1:   70:void filterMedicineConsole(Console *console) {
+        -:   71:    char criteria[50];
+        1:   72:    printf("Un criteriu (prima litera/stoc maxim): ");
+        1:   72-block  0
+call    0 returned 1
+        1:   73:    scanf_s("%s", criteria, 50);
+call    0 returned 1
+        1:   74:    MyList result = filterByCriteriaInServiceMedicine(&console->serviceMedicine, criteria);
+call    0 returned 1
+        1:   75:    printf("|%8s|%30s|%10s|%9s|\n", "Cod Unic", "Nume", "Concentratie", "Stoc");
+call    0 returned 1
+        2:   76:    for (int i = 0; i < getLenghtOfMyList(&result); i++)
+        2:   76-block  0
+call    0 returned 2
+branch  1 taken 1
+branch  2 taken 1 (fallthrough)
+        1:   77:        printf("|%8d|%30s|%10.4f|%9d|\n", result.values[i].uniqueCode, result.values[i].name, result.values[i].concentration, result.values[i].stock);
+        1:   77-block  0
+call    0 returned 1
+        1:   78:    printf("\n");
+        1:   78-block  0
+call    0 returned 1
+        1:   79:}
+        -:   80:
+function sortMedicineConsole called 1 returned 100% blocks executed 100%
+        1:   81:void sortMedicineConsole(Console *console) {
+        -:   82:    int directie;
+        1:   83:    printf("Directie (0 - crescator, 1 - descrescator): ");
+        1:   83-block  0
+call    0 returned 1
+        1:   84:    scanf_s("%d", &directie);
+call    0 returned 1
+        1:   85:    MyList result = sortElementsInServiceMedicineByDirection(&console->serviceMedicine, directie);
+call    0 returned 1
+        1:   86:    printf("|%8s|%30s|%10s|%9s|\n", "Cod Unic", "Nume", "Concentratie", "Stoc");
+call    0 returned 1
+        4:   87:    for (int i = 0; i < getLenghtOfMyList(&result); i++)
+        4:   87-block  0
+call    0 returned 4
+branch  1 taken 3
+branch  2 taken 1 (fallthrough)
+        3:   88:        printf("|%8d|%30s|%10.4f|%9d|\n", result.values[i].uniqueCode, result.values[i].name, result.values[i].concentration, result.values[i].stock);
+        3:   88-block  0
+call    0 returned 3
+        1:   89:    printf("\n");
+        1:   89-block  0
+call    0 returned 1
+        1:   90:}
+        -:   91:
+function deleteStockOfMedicineConsole called 0 returned 0% blocks executed 0%
+    #####:   92:void deleteStockOfMedicineConsole(Console *console) {
+        -:   93:    int uniqueCode;
+    #####:   94:    printf("Cod Unic: ");
+    %%%%%:   94-block  0
+call    0 never executed
+    #####:   95:    scanf_s("%d", &uniqueCode);
+call    0 never executed
+    #####:   96:    int result = deleteElementFromServiceMedicine(&console->serviceMedicine, uniqueCode);
+call    0 never executed
+    #####:   97:    switch(result)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   98:    {
+    #####:   99:        case 0:
+    #####:  100:            printf("Medicamentul a fost sters!\n");
+    %%%%%:  100-block  0
+call    0 never executed
+    #####:  101:            break;
+    #####:  102:        case 1:
+    #####:  103:            printf("Cod Unic invalid!\n");
+    %%%%%:  103-block  0
+call    0 never executed
+    #####:  104:            break;
+    #####:  105:        default:
+    #####:  106:            printf("Medicamentul nu exista!\n");
+    %%%%%:  106-block  0
+call    0 never executed
+    #####:  107:            break;
+        -:  108:    }
+    #####:  109:}
+        -:  110:
+function updateMedicineConsole called 0 returned 0% blocks executed 0%
+    #####:  111:void updateMedicineConsole(Console *console) {
+        -:  112:    int uniqueCode;
+        -:  113:    char name[30];
+        -:  114:    float concentration;
+        -:  115:    int stock;
+    #####:  116:    printf("Cod Unic: ");
+    %%%%%:  116-block  0
+call    0 never executed
+    #####:  117:    scanf_s("%d", &uniqueCode);
+call    0 never executed
+    #####:  118:    printf("Nume: ");
+call    0 never executed
+    #####:  119:    scanf_s("%s", name, 30);
+call    0 never executed
+    #####:  120:    printf("Concentratie: ");
+call    0 never executed
+    #####:  121:    scanf_s("%f", &concentration);
+call    0 never executed
+    #####:  122:    printf("Stoc: ");
+call    0 never executed
+    #####:  123:    scanf_s("%d", &stock);
+call    0 never executed
+    #####:  124:    int result = updateElementInServiceMedicine(&console->serviceMedicine, uniqueCode, name, concentration, stock);
+call    0 never executed
+    #####:  125:    switch (result)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+branch  6 never executed
+branch  7 never executed
+        -:  126:    {
+    #####:  127:        case 0:
+    #####:  128:            printf("Medicamentul a fost adaugat!\n");
+    %%%%%:  128-block  0
+call    0 never executed
+    #####:  129:            break;
+    #####:  130:        case 1:
+    #####:  131:            printf("Cod Unic invalid!\n");
+    %%%%%:  131-block  0
+call    0 never executed
+    #####:  132:            break;
+    #####:  133:        case 2:
+    #####:  134:            printf("Nume invalid!\n");
+    %%%%%:  134-block  0
+call    0 never executed
+    #####:  135:            break;
+    #####:  136:        case 3:
+    #####:  137:            printf("Concentratie invalida!\n");
+    %%%%%:  137-block  0
+call    0 never executed
+    #####:  138:            break;
+    #####:  139:        case 4:
+    #####:  140:            printf("Stoc invalid!\n");
+    %%%%%:  140-block  0
+call    0 never executed
+    #####:  141:            break;
+    #####:  142:        case 5:
+    #####:  143:            printf("Medicamentul exista deja!\n");
+    %%%%%:  143-block  0
+call    0 never executed
+    #####:  144:            break;
+    #####:  145:        case 6:
+    #####:  146:            printf("Medicamentul nu a putut fi adaugat!\n");
+    %%%%%:  146-block  0
+call    0 never executed
+    #####:  147:            break;
+    #####:  148:        default:
+    #####:  149:            break;
+    %%%%%:  149-block  0
+        -:  150:    }
+    #####:  151:}
+        -:  152:
+function addMedicineConsole called 3 returned 100% blocks executed 50%
+        3:  153:void addMedicineConsole(Console *console) {
+        -:  154:    int uniqueCode;
+        -:  155:    char name[30];
+        -:  156:    float concentration;
+        -:  157:    int stock;
+        3:  158:    printf("Cod Unic: ");
+        3:  158-block  0
+call    0 returned 3
+        3:  159:    scanf_s("%d", &uniqueCode);
+call    0 returned 3
+        3:  160:    printf("Nume: ");
+call    0 returned 3
+        3:  161:    scanf_s("%s", name, 30);
+call    0 returned 3
+        3:  162:    printf("Concentratie: ");
+call    0 returned 3
+        3:  163:    scanf_s("%f", &concentration);
+call    0 returned 3
+        3:  164:    printf("Stoc: ");
+call    0 returned 3
+        3:  165:    scanf_s("%d", &stock);
+call    0 returned 3
+        3:  166:    int result = addElementToServiceMedicine(&console->serviceMedicine, uniqueCode, name, concentration, stock);
+call    0 returned 3
+        3:  167:    switch (result)
+branch  0 taken 3
+branch  1 taken 0
+branch  2 taken 0
+branch  3 taken 0
+branch  4 taken 0
+branch  5 taken 0
+branch  6 taken 0
+branch  7 taken 0
+        -:  168:    {
+        3:  169:        case 0:
+        3:  170:            printf("Medicamentul a fost adaugat!\n");
+        3:  170-block  0
+call    0 returned 3
+        3:  171:            break;
+    #####:  172:        case 1:
+    #####:  173:            printf("Cod Unic invalid!\n");
+    %%%%%:  173-block  0
+call    0 never executed
+    #####:  174:            break;
+    #####:  175:        case 2:
+    #####:  176:            printf("Nume invalid!\n");
+    %%%%%:  176-block  0
+call    0 never executed
+    #####:  177:            break;
+    #####:  178:        case 3:
+    #####:  179:            printf("Concentratie invalida!\n");
+    %%%%%:  179-block  0
+call    0 never executed
+    #####:  180:            break;
+    #####:  181:        case 4:
+    #####:  182:            printf("Stoc invalid!\n");
+    %%%%%:  182-block  0
+call    0 never executed
+    #####:  183:            break;
+    #####:  184:        case 5:
+    #####:  185:            printf("Medicamentul exista deja!\n");
+    %%%%%:  185-block  0
+call    0 never executed
+    #####:  186:            break;
+    #####:  187:        case 6:
+    #####:  188:            printf("Medicamentul nu a putut fi adaugat!\n");
+    %%%%%:  188-block  0
+call    0 never executed
+    #####:  189:            break;
+    #####:  190:        default:
+    #####:  191:            break;
+    %%%%%:  191-block  0
+        -:  192:    }
+        3:  193:}
+        -:  194:
+function closeConsole called 1 returned 100% blocks executed 100%
+        1:  195:void closeConsole(Console *console) {
+        1:  196:    console->currentCommand = -1;
+        1:  197:    console->idConsole = -1;
+        1:  198:    deleteServiceMedicine(&console->serviceMedicine);
+        1:  198-block  0
+call    0 returned 1
+        1:  199:}
+        -:  200:
+function getCommand called 6 returned 100% blocks executed 100%
+        6:  201:void getCommand(Console *console) {
+        6:  202:    printf("Comanda: ");
+        6:  202-block  0
+call    0 returned 6
+        6:  203:    scanf_s("%d", &console->currentCommand);
+call    0 returned 6
+        6:  204:}
+        -:  205:
+function printMenu called 6 returned 100% blocks executed 100%
+        6:  206:void printMenu(Console* thisConsole) {
+       42:  207:    for (int i = 0; i < 6; i ++) {
+        6:  207-block  0
+       42:  207-block  1
+branch  0 taken 36
+branch  1 taken 6 (fallthrough)
+       36:  208:        printf("%d. %s\n", i + 1, thisConsole->commands[i]);
+       36:  208-block  0
+call    0 returned 36
+        -:  209:    }
+        6:  210:}

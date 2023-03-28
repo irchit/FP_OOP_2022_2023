@@ -1,0 +1,7 @@
+# ninja log v5
+23	233	7017158358091889	build.ninja	f55bde1ded866037
+1089	1778	7017127654170700	lab2_4_iter1.exe	885af7ae23df3165
+3	1041	7017127646656025	CMakeFiles/lab2_4_iter1.dir/medicine.c.obj	a88eca2d1e0b3bd2
+15	1014	7017127646576001	CMakeFiles/lab2_4_iter1.dir/main.c.obj	551361e1bffd09df
+11	1041	7017127646576001	CMakeFiles/lab2_4_iter1.dir/console.c.obj	cc17ab66b18a5dc5
+19	1040	7017127646576001	CMakeFiles/lab2_4_iter1.dir/myList.c.obj	25523f1171431734
