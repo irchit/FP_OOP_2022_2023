@@ -1,9 +1,9 @@
 # UniProjects
 
-Project from University;
-Proiecte de la Universitate;
+Project from University;<br>
+Proiecte de la Universitate;<br>
 
-`std::cout << "Hello World\n";`
-`print("Hello Wolrd\n");`
-`printf("%s\n", "Hello World");`
-`Console.Write("Hello World\n");`
+`std::cout << "Hello World\n";`<br>
+`print("Hello Wolrd\n");`<br>
+`printf("%s\n", "Hello World");`<br>
+`Console.Write("Hello World\n");`<br>
