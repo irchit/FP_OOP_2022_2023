@@ -29,4 +29,25 @@ public:
 	{
 		cout << "!!!!!!!!!!!!!!!!\n";
 	}
+
+	string getProductName()
+	{
+		return this->productName;
+	}
+
+	string getProductType()
+	{
+		return this->productType;
+	}
+
+	float getProductPrice()
+	{
+		return this->productPrice;
+	}
+
+	string getProductProducer()
+	{
+		return this->productProducer;
+	}
+
 };
