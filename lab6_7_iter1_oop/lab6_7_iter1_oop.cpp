@@ -1,8 +1,9 @@
 #include <iostream>
+#include "product.h"
 
 void testAll()
 {
-    return;
+    testClassProduct();
 }
 
 void runConsole()

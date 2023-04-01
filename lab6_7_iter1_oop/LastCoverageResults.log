@@ -1,0 +1,21 @@
+[2023-04-01 16:46:44] [info] Start Program:
+Path:"D:\\Facultate\\An1\\Sem2\\oop\\lab\\UniProjects\\lab6_7_iter1_oop\\Debug\\lab6_7_iter1_oop.exe"
+Arguments:
+Working directory: "D:\\Facultate\\An1\\Sem2\\oop\\lab\\UniProjects\\lab6_7_iter1_oop\\"
+Modules: Selected: D:\Facultate\An1\Sem2\oop\lab\UniProjects\lab6_7_iter1_oop\Debug\lab6_7_iter1_oop.exe Excluded: 
+Sources: Selected: D:\Facultate\An1\Sem2\oop\lab\UniProjects\lab6_7_iter1_oop Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: binary C:\Users\irchit\AppData\Local\Temp\qlplrmt0.bys 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2023-04-01 16:46:44] [info] Module: D:\Facultate\An1\Sem2\oop\lab\UniProjects\lab6_7_iter1_oop\Debug\lab6_7_iter1_oop.exe is selected because it matches selected pattern: D:\Facultate\An1\Sem2\oop\lab\UniProjects\lab6_7_iter1_oop\Debug\lab6_7_iter1_oop.exe
+[2023-04-01 16:46:44] [info] ----------------------------------------------------
+[2023-04-01 16:46:44] [info] Coverage binary generated in file: C:\Users\irchit\AppData\Local\Temp\qlplrmt0.bys
+[2023-04-01 16:46:44] [info] ----------------------------------------------------

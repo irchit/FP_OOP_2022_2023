@@ -1,9 +1,11 @@
 #pragma once
 #include <string>
+#include <cassert>
 #include <iostream>
 
 using std::string;
 using std::cout;
+using std::to_string;
 
 class Product {
 
@@ -26,9 +28,7 @@ public:
 		productType{ product.productType },
 		productPrice{ product.productPrice },
 		productProducer{ product.productProducer }
-	{
-		cout << "!!!!!!!!!!!!!!!!\n";
-	}
+	{}
 
 	string getProductName()
 	{
@@ -50,4 +50,28 @@ public:
 		return this->productProducer;
 	}
 
+	void setProductType(string newType)
+	{
+		this->productType = newType;
+	}
+
+	void setProductPrice(float newPrice)
+	{
+		this->productPrice = newPrice;
+	}
+
+	void setProductProducer(string newProducer) 
+	{
+		this->productProducer = newProducer;
+	}
+
+	string productToString();
 };
+
+bool compareByName(Product&, Product&);
+bool compareByType(Product&, Product&);
+bool compareByPrice(Product&, Product&);
+bool compareByProducer(Product&, Product&);
+
+void testClassProduct();
+
