@@ -1,3 +1,0 @@
-﻿  service.c
-D:\Facultate\An1\Sem2\oop\lab\LAB2_4_ITER2_\service.c(155,1): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  LAB2_4_ITER2_.vcxproj -> D:\Facultate\An1\Sem2\oop\lab\LAB2_4_ITER2_\Debug\LAB2_4_ITER2_.exe

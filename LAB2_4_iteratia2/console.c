@@ -18,6 +18,8 @@ void sortMedicineConsole(Console* console);
 
 void filterMedicineConsole(Console* console);
 
+void undoLastCommandConsole(thisConsole);
+
 Console createConsole(int idConsole)
 {
     Console newConsole;
@@ -32,6 +34,7 @@ Console createConsole(int idConsole)
     strcpy_s(newConsole.commands[3], 30, "Sortare cresc/descresc");
     strcpy_s(newConsole.commands[4], 30, "Filtrare dupa criteriu");
     strcpy_s(newConsole.commands[5], 30, "Inchideti");
+    strcpy_s(newConsole.commands[6], 30, "Undo");
     newConsole.serviceMedicine = createServiceMedicine();
     return newConsole;
 }
@@ -71,11 +74,22 @@ void runConsole(Console* thisConsole)
             break;
         case 6:
             return;
+        case 7:
+            undoLastCommandConsole(thisConsole);
+            break;
         default:
             printf("Comanda Invalida\n");
             break;
         }
     }
+}
+
+void undoLastCommandConsole(Console* console) {
+    int errorCode = undoLastCommand(&console->serviceMedicine);
+    if (errorCode == 1)
+        printf("-- UNDO STACK EMPTY --\n");
+    else
+        printf("UNDO realizat cu succes!\n");
 }
 
 void filterMedicineConsole(Console* console) {
@@ -107,7 +121,7 @@ void deleteStockOfMedicineConsole(Console* console) {
     int uniqueCode;
     printf("Cod Unic: ");
     scanf_s("%d", &uniqueCode);
-    int result = deleteElementFromServiceMedicine(&console->serviceMedicine, uniqueCode);
+    int result = deleteElementFromServiceMedicine(&console->serviceMedicine, uniqueCode, 0);
     switch (result)
     {
     case 0:
@@ -135,7 +149,7 @@ void updateMedicineConsole(Console* console) {
     scanf_s("%f", &concentration);
     printf("Stoc: ");
     scanf_s("%d", &stock);
-    int result = updateElementInServiceMedicine(&console->serviceMedicine, uniqueCode, name, concentration, stock);
+    int result = updateElementInServiceMedicine(&console->serviceMedicine, uniqueCode, name, concentration, stock, 0);
     switch (result)
     {
     case 0:
@@ -178,7 +192,7 @@ void addMedicineConsole(Console* console) {
     scanf_s("%f", &concentration);
     printf("Stoc: ");
     scanf_s("%d", &stock);
-    int result = addElementToServiceMedicine(&console->serviceMedicine, uniqueCode, name, concentration, stock);
+    int result = addElementToServiceMedicine(&console->serviceMedicine, uniqueCode, name, concentration, stock, 0);
     switch (result)
     {
     case 0:
@@ -214,7 +228,7 @@ void getCommand(Console* console) {
 }
 
 void printMenu(Console* thisConsole) {
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 7; i++) {
         printf("%d. %s\n", i + 1, thisConsole->commands[i]);
     }
 }
