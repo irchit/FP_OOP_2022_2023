@@ -141,9 +141,11 @@
   <ItemGroup>
     <ClCompile Include="lab6_7_iter1_oop.cpp" />
     <ClCompile Include="product.cpp" />
+    <ClCompile Include="repo_products.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="product.h" />
+    <ClInclude Include="repo_products.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
