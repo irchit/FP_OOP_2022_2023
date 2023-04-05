@@ -1,0 +1,21 @@
+[2023-04-05 21:03:40] [info] Start Program:
+Path:"D:\\Facultate\\An1\\Sem2\\oop\\lab\\LAB2_4_ITER2_\\Debug\\LAB2_4_ITER2_.exe"
+Arguments:
+Working directory: "D:\\Facultate\\An1\\Sem2\\oop\\lab\\LAB2_4_ITER2_\\"
+Modules: Selected: D:\Facultate\An1\Sem2\oop\lab\LAB2_4_ITER2_\Debug\LAB2_4_ITER2_.exe Excluded: 
+Sources: Selected: D:\Facultate\An1\Sem2\oop\lab\LAB2_4_ITER2_ Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: binary C:\Users\irchit\AppData\Local\Temp\1sneglmc.5b5 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2023-04-05 21:03:40] [info] Module: D:\Facultate\An1\Sem2\oop\lab\LAB2_4_ITER2_\Debug\LAB2_4_ITER2_.exe is selected because it matches selected pattern: D:\Facultate\An1\Sem2\oop\lab\LAB2_4_ITER2_\Debug\LAB2_4_ITER2_.exe
+[2023-04-05 21:03:43] [info] ----------------------------------------------------
+[2023-04-05 21:03:43] [info] Coverage binary generated in file: C:\Users\irchit\AppData\Local\Temp\1sneglmc.5b5
+[2023-04-05 21:03:43] [info] ----------------------------------------------------
